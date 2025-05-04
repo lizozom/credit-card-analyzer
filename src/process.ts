@@ -2,6 +2,7 @@ import { readFile, writeFile } from 'fs/promises';
 import path, { join } from 'path';
 import { ensureOutputDir } from './utils/ensureOutputDir';
 import { getNormalizedCategory, getNormalizedBusinessName } from './utils/categoryMapping';
+import { normCurrencyToNIS } from './utils/normCurrency';
 
 interface Transaction {
     source: string;
@@ -39,14 +40,32 @@ async function processTransactions() {
     );
 
     // Combine and process transactions
-    const allTransactions = [
+    const allTransactions = await Promise.all([
         ...calData.flatMap((account: any) => 
-            account.transactions.map((t: Transaction) => ({ ...t, source: 'CAL', accountNumber: account.accountNumber }))
+            account.transactions.map(async (t: Transaction) => {
+                const normalized = await normCurrencyToNIS(t.chargedAmount, t.chargedCurrency);
+                return { 
+                    ...t, 
+                    source: 'CAL', 
+                    accountNumber: account.accountNumber,
+                    chargedAmount: normalized.value,
+                    chargedCurrency: normalized.currency
+                };
+            })
         ),
         ...maxData.flatMap((account: any) => 
-            account.transactions.map((t: Transaction) => ({ ...t, source: 'MAX', accountNumber: account.accountNumber }))
+            account.transactions.map(async (t: Transaction) => {
+                const normalized = await normCurrencyToNIS(t.chargedAmount, t.chargedCurrency);
+                return { 
+                    ...t, 
+                    source: 'MAX', 
+                    accountNumber: account.accountNumber,
+                    chargedAmount: normalized.value,
+                    chargedCurrency: normalized.currency
+                };
+            })
         )
-    ];
+    ]);
 
     // Convert to CSV
     const csvHeaders = [

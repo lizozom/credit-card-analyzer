@@ -10,8 +10,11 @@ const businessMappings: any[] = [
     { pattern: /רמי לוי/, name: 'רמי לוי' }, 
     { pattern: /AM:PM/, name: 'AM:PM' }, 
     { pattern: /קשת טעמים/, name: 'קשת טעמים' }, 
-
-
+    { pattern: /סופרפארם/, name:  'סופרפארם' },
+    { pattern: /סופר פארם/, name:  'סופרפארם' },
+    { pattern: /בי דראגסטורס/, name:  'בי דראגסטורס' },
+    { pattern: /אונליין BE/, name:  'בי דראגסטורס' },
+    { pattern: /BIT/, name:  'BIT' },
 ];
 
 export const businessToCategory: BusinessMapping[] = [
@@ -89,8 +92,8 @@ export const categoryMapping: { [key: string]: string } = {
     'פנאי, בידור וספורט': 'רפואה ובתי מרקחת',
     'רפואה ובתי מרקחת': 'רפואה ובתי מרקחת',
 
-    'עיצוב הבית': 'קניות כללי' ,
-    'ריהוט ובית': 'קניות כללי' ,
+    'עיצוב הבית': 'לבית' ,
+    'ריהוט ובית': 'לבית' ,
 
     'מוסדות': 'תשתיות ושירותים',
     'עירייה וממשלה': 'תשתיות ושירותים',
@@ -111,7 +114,7 @@ export const categoryMapping: { [key: string]: string } = {
     'תעשיה ומכירות': 'שוברים'
 };
 
-export function getNormalizedBusinessName(businessName: string): string {
+export function getNormalizedBusinessName(businessName: string, memo?: string): string {
     // Check if the business name matches any of the patterns
     const mapping = businessMappings.find(mapping => {
         if (mapping.pattern instanceof RegExp) {
@@ -120,11 +123,14 @@ export function getNormalizedBusinessName(businessName: string): string {
         return mapping.pattern === businessName;
     });
 
+    // If a match is found and it's BIT, append the memo
+    if (mapping && mapping.name === 'BIT' && memo) {
+        return `${mapping.name} - ${memo}`;
+    }
+
     // If a match is found, return the name; otherwise, return the original name
     return mapping ? mapping.name : businessName;
 }
-
-
 
 export function getNormalizedCategory(category: string, businessName?: string): string {
     // First check if we have a specific mapping for this business name

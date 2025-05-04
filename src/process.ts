@@ -67,6 +67,9 @@ async function processTransactions() {
         )
     ]);
 
+    // filter out הסדר חוב-כאל
+    const filteredTransactions = allTransactions.filter(t => !t.description.includes('הסדר חוב-כאל'));
+
     // Convert to CSV
     const csvHeaders = [
         'source',
@@ -88,13 +91,13 @@ async function processTransactions() {
         'installmentTotal'
     ].join(',');
 
-    const csvRows = allTransactions.map(t => [
+    const csvRows = filteredTransactions.map(t => [
         t.source,
         `"${t.accountNumber}"`,
         t.date,
         t.processedDate,
         t.processedDate ? t.processedDate.substring(0, 7) : '',
-        `"${getNormalizedBusinessName(t.description.replace(/"/g, '""'))}"`,
+        `"${getNormalizedBusinessName(t.description.replace(/"/g, '""'), t.memo)}"`,
         `"${getNormalizedCategory(t.category, t.description)}"`,
         t.originalAmount,
         t.originalCurrency,

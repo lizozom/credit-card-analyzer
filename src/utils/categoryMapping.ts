@@ -17,7 +17,7 @@ const businessMappings: any[] = [
 export const businessToCategory: BusinessMapping[] = [
     // Add your business mappings here with regex support
     { pattern: /^AMAZON MKTPL/, category: 'קניות כללי' },  // Will match any business starting with שופרסל
-    { pattern: /AWS/, category: 'מחשבים ותקשורת' },  
+    
     { pattern: /ALIPAYSINGA/, category: 'קניות כללי' }, 
     { pattern: /ALIEXPRESS/, category: 'קניות כללי' }, 
     { pattern: /aliexpress/, category: 'קניות כללי' }, 
@@ -29,21 +29,32 @@ export const businessToCategory: BusinessMapping[] = [
     { pattern: "תשלום ועד בית", category: 'תשתיות ושירותים' },  
     { pattern: /פרטנר/, category:  'תשתיות ושירותים' },  
 
-    { pattern: /^ADOBE/, category: 'מחשבים ותקשורת' },
-    { pattern: /^CONFLUENT CLOUD/, category: 'מחשבים ותקשורת' },
-    { pattern: /TESTING EXAM/, category: 'מחשבים ותקשורת' },
-    { pattern: /COURSERA/, category: 'מחשבים ותקשורת' },
-    { pattern: /CODECADEMY/, category: 'מחשבים ותקשורת' },
+    { pattern: /AWS/, category: 'דיגיטל' },  
+    { pattern: /^ADOBE/, category: 'דיגיטל' },
+    { pattern: /^CONFLUENT CLOUD/, category: 'דיגיטל' },
+    { pattern: /TESTING EXAM/, category: 'דיגיטל' },
+    { pattern: /COURSERA/, category: 'דיגיטל' },
+    { pattern: /CODECADEMY/, category: 'דיגיטל' },
+    { pattern: /OPENAI/, category: 'דיגיטל' },
+    { pattern: /YOUTUBEPREMIUM/, category: 'דיגיטל' },
+    { pattern: /AMAZON PRIME/, category: 'דיגיטל' },
+    { pattern: /PRIME VIDEO/, category: 'דיגיטל' },
+    { pattern: /GAMES WORKSHOP/, category:  'דיגיטל' },
+    { pattern: /COHERE/, category:  'דיגיטל' },
+    { pattern: /VERCEL/, category:  'דיגיטל' },
+    { pattern: /MANUS/, category:  'דיגיטל' },
+    { pattern: /PIXOP/, category:  'דיגיטל' },
+    { pattern: /SQSP/, category:  'דיגיטל' },
+    { pattern: /NETFLIX/, category:  'דיגיטל' },
 
     { pattern: /בהצדעה/, category: 'שוברים' },
 
     { pattern: /דלק/, category: 'תחבורה ורכבים' },
     { pattern: /חניון/, category: 'תחבורה ורכבים' },
     { pattern: /YELLOW/, category: 'תחבורה ורכבים' },
+    { pattern: /פז אפליקציית יילו/, category: 'תחבורה ורכבים'  },
+    { pattern: /סדש/, category: 'תחבורה ורכבים'  },
 
-    { pattern: /YOUTUBEPREMIUM/, category: 'פנאי, בידור וספורט' },
-    { pattern: /AMAZON PRIME/, category: 'פנאי, בידור וספורט' },
-    { pattern: /PRIME VIDEO/, category: 'פנאי, בידור וספורט' },
     { pattern: /סטודיו נעים/, category:  'פנאי, בידור וספורט' },
     { pattern: /פעלטון/, category:  'פנאי, בידור וספורט' },
     { pattern: /גאיהלנד/, category:  'פנאי, בידור וספורט' },
@@ -51,7 +62,6 @@ export const businessToCategory: BusinessMapping[] = [
     { pattern: /מכבידנט/, category:  'רפואה ובתי מרקחת' },
     { pattern: /אונליין BE/, category:  'רפואה ובתי מרקחת' },
     { pattern: /דראגסטור/, category:  'רפואה ובתי מרקחת' },
-   
 
     { pattern: /מט"ח/, category:  'שונות' },
     
@@ -65,10 +75,10 @@ export const categoryMapping: { [key: string]: string } = {
     'מזון וצריכה': 'מזון וצריכה',
 
     // Technology
-    'חשמל ומחשבים': 'מחשבים ותקשורת',
-    'מחשבים': 'מחשבים ותקשורת',
-    'תקשורת ומחשבים': 'מחשבים ותקשורת',
-    'שירותי תקשורת': 'מחשבים ותקשורת',
+    'חשמל ומחשבים': 'קניות כללי',
+    'מחשבים': 'קניות כללי',
+    'תקשורת ומחשבים': 'קניות כללי',
+    'שירותי תקשורת': 'קניות כללי',
 
     // Beauty & Cosmetics
     'טיפוח ויופי': 'רפואה ובתי מרקחת',

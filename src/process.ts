@@ -90,7 +90,7 @@ async function processTransactions() {
 
     const csvRows = allTransactions.map(t => [
         t.source,
-        t.accountNumber,
+        `"${t.accountNumber}"`,
         t.date,
         t.processedDate,
         t.processedDate ? t.processedDate.substring(0, 7) : '',
